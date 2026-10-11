@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Knoledge Search is a thoughtful search engine for exploring the ideas, people, and places that shape our world."
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Knoledge Search" />
+    <title>Knoledge Search</title>
+    <link rel="manifest" href="./app.webmanifest" />
+    <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+    <link rel="icon" type="image/png" href="./Branding/KS Engine c.png" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js?v=0.1.7-search-fix" defer></script>
+    <script src="./pwa.js" defer></script>
+  </head>
+  <body>
+    <dialog class="app-update-dialog" id="app-update-dialog" aria-labelledby="app-update-title">
+      <h2 id="app-update-title">Knoledge Search update available</h2>
+      <p>A new version is ready. Update now to get the latest improvements.</p>
+      <div class="app-update-actions">
+        <button class="app-update-later" id="app-update-later" type="button">Later</button>
+        <button class="app-update-now" id="app-update-now" type="button">Update now</button>
+      </div>
+    </dialog>
+    <header class="topbar">
+      <button class="install-app" id="install-app" type="button" hidden>Install app</button>
+      <a class="brand" href="./" aria-label="Knoledge Search home">
+        <img src="./Branding/KS Engine c.png" alt="" />
+        <span>Knoledge <strong>Search</strong></span>
+      </a>
+      <details class="download-menu">
+        <summary class="download-button">Download</summary>
+        <div class="download-options">
+          <a href="https://knoledge.creative-universal.com/versions/Knoledge%20Search-0.1.7.dmg" download>macOS download</a>
+          <a href="https://knoledge.creative-universal.com/versions/Knoledge%20Search%20Setup%200.1.7.exe" download>Windows download</a>
+        </div>
+      </details>
+      <a class="about-link" href="./about.html">About Knoledge Search</a>
+    </header>
+
+    <main>
+      <nav class="app-tabs" aria-label="Knoledge Search tabs">
+        <div class="app-tablist" id="app-tablist" role="tablist" aria-label="Open pages">
+          <button
+            class="app-tab is-active"
+            id="search-tab"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="search-workspace"
+            data-tab-id="search"
+          >
+            <span class="tab-favicon search-favicon" aria-hidden="true">K</span>
+            <span class="tab-title">Search</span>
+          </button>
+        </div>
+      </nav>
+
+      <div class="app-workspace" id="search-workspace" role="tabpanel" aria-labelledby="search-tab">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-content">
+            <a class="home-brand" href="index.html" aria-label="Knoledge Search home">
+              <img src="./Branding/KS Engine c.png" alt="" />
+              <span>Knoledge <strong>Search</strong></span>
+            </a>
+            <p class="intro">A little more curious.</p>
+            <form class="search-form" id="search-form" role="search">
+              <label class="visually-hidden" for="search-input">Search for anything</label>
+              <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                <path d="m16 16 4.5 4.5"></path>
+              </svg>
+              <input
+                id="search-input"
+                name="q"
+                type="search"
+                placeholder="What are you curious about?"
+                autocomplete="off"
+                spellcheck="false"
+                maxlength="200"
+                required
+              />
+              <button class="clear-button" id="clear-button" type="button" aria-label="Clear search" hidden>
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"></path></svg>
+              </button>
+              <button class="submit-button" type="submit">
+                <span>Search</span>
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4"></path></svg>
+              </button>
+            </form>
+            <form class="address-form" id="address-form" aria-label="Go to a website">
+              <label class="visually-hidden" for="address-input">Website address</label>
+              <svg class="address-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M3.5 12h17M12 3a15 15 0 0 1 0 18m0-18a15 15 0 0 0 0 18"></path>
+              </svg>
+              <input
+                id="address-input"
+                name="url"
+                type="text"
+                inputmode="url"
+                placeholder="Go to a website, e.g. example.com"
+                autocomplete="url"
+                spellcheck="false"
+                maxlength="2048"
+              />
+              <button class="address-go" type="submit">Go</button>
+            </form>
+            <p class="address-error" id="address-error" role="status" hidden></p>
+            <p class="address-status" id="address-status" role="status" hidden></p>
+            <section class="search-history" id="search-history" aria-label="Recent searches" hidden>
+              <div class="history-heading">
+                <span>Recent searches</span>
+                <button class="clear-history" id="clear-history" type="button">Clear history</button>
+              </div>
+              <ul class="history-list" id="history-list"></ul>
+              <p class="history-notice" id="history-notice" role="status" hidden></p>
+            </section>
+          </div>
+        </section>
+
+        <section class="results-section" id="results-section" aria-live="polite" aria-busy="false">
+          <div class="results-heading" id="results-heading" hidden>
+            <div>
+              <p class="section-kicker">YOUR NEXT RABBIT HOLE</p>
+              <h2 id="results-title">Search results</h2>
+            </div>
+            <p class="result-source" id="result-source"></p>
+          </div>
+          <div id="results-content"></div>
+        </section>
+
+        <section class="about">
+          <p>Knoledge Search helps you find useful starting points from Wikipedia.</p>
+          <p class="version-label">KS Engine v0.1.7</p>
+        </section>
+      </div>
+
+      <section class="web-workspace" id="web-workspace" role="tabpanel" aria-label="Opened website" hidden>
+        <div class="web-toolbar">
+          <button class="back-to-search" id="back-to-search" type="button">← Back to Search</button>
+          <div class="web-navigation" aria-label="Website navigation">
+            <button class="web-nav-button" id="web-back" type="button" aria-label="Go back" title="Go back" disabled>←</button>
+            <button class="web-nav-button" id="web-forward" type="button" aria-label="Go forward" title="Go forward" disabled>→</button>
+            <button class="web-nav-button" id="web-reload" type="button" aria-label="Reload page" title="Reload page">↻</button>
+          </div>
+          <form class="web-address-form" id="web-address-form" aria-label="Current website address">
+            <label class="visually-hidden" for="web-address-input">Website address</label>
+            <svg class="address-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M3.5 12h17M12 3a15 15 0 0 1 0 18m0-18a15 15 0 0 0 0 18"></path>
+            </svg>
+            <input id="web-address-input" name="url" type="text" inputmode="url" autocomplete="url" spellcheck="false" maxlength="2048" required />
+            <button class="address-go" type="submit">Go</button>
+          </form>
+          <div class="web-open-actions">
+            <a class="external-link" id="external-link" target="_blank" rel="noopener noreferrer">Open site in new tab ↗</a>
+          </div>
+        </div>
+        <p class="web-message" id="web-message" role="status"></p>
+        <div class="web-frames" id="web-frames"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a class="footer-brand" href="index.html">Knoledge Search</a>
+      <p>Your search history is stored on this device.</p>
+      <a href="./about.html">About Knoledge Search</a>
+      <a href="https://www.wikipedia.org/" target="_blank" rel="noreferrer">Knowledge for everyone <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>

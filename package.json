@@ -1,0 +1,72 @@
+{
+  "name": "knoledge-search-app",
+  "version": "0.1.7",
+  "private": true,
+  "description": "Installable and desktop editions of Knoledge Search",
+  "author": "Knoledge Search Team",
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "build:icons": "node scripts/build-icons.cjs",
+    "start": "npm run build:icons && electron .",
+    "build:mac": "npm run build:icons && electron-builder --mac dmg zip",
+    "build:win": "npm run build:icons && electron-builder --win nsis",
+    "publish:mac": "npm run build:icons && electron-builder --mac dmg zip --publish always",
+    "publish:win": "npm run build:icons && electron-builder --win nsis --publish always",
+    "stage:updates": "node scripts/stage-updates.cjs",
+    "build": "npm run build:mac"
+  },
+  "dependencies": {
+    "electron-updater": "^6.6.2"
+  },
+  "devDependencies": {
+    "electron": "^44.6.0",
+    "electron-builder": "^26.0.12",
+    "png-to-ico": "^2.1.8"
+  },
+  "build": {
+    "appId": "com.gridbros.knoledgesearch",
+    "productName": "Knoledge Search",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "VintageStudios",
+        "repo": "knoledge",
+        "releaseType": "release"
+      }
+    ],
+    "directories": {
+      "buildResources": "desktop/icons",
+      "output": "dist"
+    },
+    "files": [
+      "desktop/main.cjs",
+      "desktop/preload.cjs",
+      "desktop/icons/icon.icns",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "PWA",
+        "to": "PWA"
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.education",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "desktop/icons/icon.icns"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "desktop/icons/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
