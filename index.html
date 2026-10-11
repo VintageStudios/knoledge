@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Knoledge Search</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar" aria-label="Application chrome"></header>
+
+    <main>
+      <div class="app-tabs">
+        <div id="app-tablist" class="app-tablist" role="tablist" aria-label="Open tabs"></div>
+      </div>
+
+      <section id="search-workspace" class="search-workspace">
+        <div class="hero">
+          <div class="hero-content">
+            <div class="home-brand" aria-label="Knoledge search brand">
+              <span>Knoledge</span>
+            </div>
+            <p class="intro">Search the web.</p>
+
+            <form id="search-form" class="search-form" role="search" aria-label="Search">
+              <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="5.5"></circle>
+                <path d="M16 16L21 21"></path>
+              </svg>
+              <input id="search-input" type="search" placeholder="Search or type a URL" aria-label="Search or type a URL" />
+              <button id="clear-button" class="clear-button" type="button" aria-label="Clear search">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 6L18 18M18 6L6 18"></path>
+                </svg>
+              </button>
+              <button class="submit-button" type="submit" aria-label="Submit search">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="11" cy="11" r="5.5"></circle>
+                  <path d="M16 16L21 21"></path>
+                </svg>
+                <span>Search</span>
+              </button>
+            </form>
+
+            <form id="address-form" class="address-form" aria-label="Open website">
+              <svg class="address-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M10 17l-5-5 5-5"></path>
+                <path d="M14 7l5 5-5 5"></path>
+              </svg>
+              <input id="address-input" type="text" placeholder="Open a website" aria-label="Open a website" />
+              <button class="address-go" type="submit">Open</button>
+            </form>
+            <div id="address-error" class="address-error" hidden></div>
+            <div id="address-status" class="address-status" hidden>
+              <a href="#">Learn more</a>
+            </div>
+
+            <section class="search-history" id="search-history" hidden>
+              <div class="history-heading">
+                <span>Recent searches</span>
+                <button id="clear-history" class="clear-history" type="button">Clear</button>
+              </div>
+              <ul id="history-list" class="history-list" aria-live="polite"></ul>
+              <div id="history-notice" class="history-notice" hidden></div>
+            </section>
+
+          </div>
+        </div>
+        <section id="results-section" class="results-section" aria-busy="false" hidden>
+          <div id="results-heading" class="results-heading">
+            <h2 id="results-title"></h2>
+            <p id="result-source" class="result-source"></p>
+          </div>
+          <div id="results-content" class="result-list" aria-live="polite"></div>
+        </section>
+      </section>
+
+      <section id="web-workspace" class="web-workspace" hidden>
+        <div class="web-toolbar">
+          <div class="browser-navigation">
+            <button id="browser-back" class="browser-nav-button" type="button" aria-label="Go back">←</button>
+            <button id="browser-forward" class="browser-nav-button" type="button" aria-label="Go forward">→</button>
+            <button id="browser-refresh" class="browser-nav-button" type="button" aria-label="Reload page">↻</button>
+          </div>
+          <button id="back-to-search" class="back-to-search" type="button">Back to Search</button>
+          <form id="web-address-form" class="web-address-form" aria-label="Navigate to website">
+            <input id="web-address-input" type="text" aria-label="Website address" />
+          </form>
+          <div class="web-open-actions">
+            <a id="external-link" class="external-link" href="#" target="_blank" rel="noopener noreferrer" title="Opens this page outside the embedded view">If cookies or embedding block this page, open in browser &rarr;</a>
+          </div>
+        </div>
+        <div id="web-message" class="web-message" hidden></div>
+        <div id="web-frames" class="web-frames"></div>
+      </section>
+
+    </main>
+
+    <script src="app.js?v=0.1.7-search-fix" defer></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+[[headers]]
+  for = "/versions/latest.yml"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/versions/latest-mac.yml"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"

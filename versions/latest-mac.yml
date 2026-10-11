@@ -1,0 +1,11 @@
+version: 0.1.7
+files:
+  - url: Knoledge Search-0.1.7-mac.zip
+    sha512: y5vxDBVrTQI53ApbEMG0BiXNOUcFUiNdClb5B6C9NISt4pGY9NiB/+e1m/rXITmPt9FRuqXM1U3fo6RI1fcDGg==
+    size: 134002924
+  - url: Knoledge Search-0.1.7.dmg
+    sha512: nz+q61TpHPyt5mrMoy8w0ElmZKapC0vZiosr8wTv+Ph4Y8rHYgvdAol+0NoB0EcpR/PXma2aMNiF92JtgYG1Bw==
+    size: 134166354
+path: Knoledge Search-0.1.7-mac.zip
+sha512: y5vxDBVrTQI53ApbEMG0BiXNOUcFUiNdClb5B6C9NISt4pGY9NiB/+e1m/rXITmPt9FRuqXM1U3fo6RI1fcDGg==
+releaseDate: '2026-10-08T03:18:42.504Z'
